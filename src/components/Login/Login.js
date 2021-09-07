@@ -1,22 +1,61 @@
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import AuthForm from '../AuthForm';
+import { Alert } from 'react-bootstrap';
+import { useState } from 'react';
+import { useHistory } from 'react-router';
 
 const Login = () => {
+
+    const history = useHistory();
+
+    const [user, setUser] = useState({
+        username: '',
+        loggedIn: false,
+    });
+
+    const onChangeName = (e) => {
+        setUser(oldUser => ({
+            ...oldUser, username: e.target.value
+        }))
+    };
+
+
+    const onSubmitLoginHandler = (e) => {
+        e.preventDefault()
+
+        let oldUsers = localStorage.getItem('users')
+        let oldArr = JSON.parse(oldUsers)
+
+        oldArr.map(arr => {
+
+            if (user.username.length > 0) {
+                if (arr.username === user.username) {
+                    const currUser = {
+                        username: user.username,
+                        loggedIn: true,
+                    }
+                    setUser(oldUser => ({
+                        ...oldUser, loggedIn: true
+                    }));
+                    localStorage.setItem('user', JSON.stringify(currUser))
+                    history.push('/');
+                } else {
+                    setUser({ error: 'Please check your username' })
+                }
+            }
+            return null;
+        });
+    }
+
     return (
-        <Container className = "border mt-5 mb-5 ml-5 mr-5 w-50 ">
-            <Row>
-                <Col md="6">
-                    <Form>
-                        <Form.Group className="mr-5 ml-5 text-center" controlId="formBasicEmail">
-                            <Form.Label >Username</Form.Label>
-                            <Form.Control type="text" placeholder="Username" />
-                        </Form.Group>
-                        <Button className="mt-3 mb-3" variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
+        <>
+            {
+                user.error ?
+                    <Alert variant='danger'>
+                        {user.error}
+                    </Alert> : null
+            }
+            <AuthForm formName="Login" onChangeName={onChangeName} OnSubmitHandler={onSubmitLoginHandler} />
+        </>
     );
 };
 

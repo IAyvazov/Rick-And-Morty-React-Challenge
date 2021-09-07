@@ -1,6 +1,12 @@
-const Home = () =>{
+import { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
+
+const Home = (props) =>{
+
+    const authContext = useContext(AuthContext);
+
     return(
-        <h1>Home page</h1>
+        <h1>hello {authContext?.username}</h1>
     );
 };
 

@@ -1,23 +1,50 @@
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { useHistory } from 'react-router';
+import { useState } from 'react';
+import AuthForm from '../AuthForm';
 
-const Register = () =>{
+const Register = () => {
+
+    const history = useHistory();
+    const [user, setUser] = useState({
+        username: '',
+        isLoggedIn: false
+    });
+
+    const onChangeName = (e) => {
+        setUser({
+            username: e.target.value
+        })
+    }
+
+
+    const onRegisterSubmitHandler = (e) => {
+        e.preventDefault();
+        const newUser = {
+            username: user.username,
+        }
+
+        if (/[^a-zA-Z]/.test(newUser.username)) {
+            return;
+        } else {
+            let users = localStorage.getItem('users');
+            if (users == null) {
+                users = [];
+                users.push(user);
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+            else {
+                let oldUsers = JSON.parse(users);
+                oldUsers.push(newUser);
+                localStorage.setItem('users', JSON.stringify(oldUsers));
+            }
+
+            history.push('/login');
+        }
+    };
+
+
     return (
-        <Container className = "border mt-5 mb-5 ml-5 mr-5 w-50 bg-dark text-white">
-            <h1 color='white'>Register</h1>
-            <Row className="justify-content-md-center">
-                <Col  md="6">
-                    <Form >
-                        <Form.Group className="mr-5 ml-5 text-center black" controlId="formBasicEmail">
-                            <Form.Label htmlFor="username" >Username</Form.Label>
-                            <Form.Control  type="text" placeholder="Username" />
-                        </Form.Group>
-                        <Button className="mt-3 mb-3" variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
+        <AuthForm formName="Register" OnSubmitHandler={onRegisterSubmitHandler} onChangeName={onChangeName} />
     );
 };
 
