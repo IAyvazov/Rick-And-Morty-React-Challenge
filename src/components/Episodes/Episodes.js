@@ -1,4 +1,5 @@
 import { Card, Row, Col, Pagination } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
@@ -23,16 +24,19 @@ const Episodes = () => {
             {
                 episodes?.results.map(episode => {
                     return (
-                        <Col key={episode.name}>
-                            <Card style={{ width: '18rem' }} className=" bg-dark text-white ">
-                                <Card.Body>
-                                    <Card.Title>Episode: {episode.name}</Card.Title>
-                                    <Card.Text>
-                                        {episode.air_date}
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>)
+                        <Link key={episode.name} style={{ textDecoration: 'none' }}  to= {`/episode/details/${episode.id}`} >
+                            <Col >
+                                <Card style={{ width: '18rem' }} className=" bg-dark text-white ">
+                                    <Card.Body>
+                                        <Card.Title>Episode: {episode.name}</Card.Title>
+                                        <Card.Text>
+                                            {episode.air_date}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        </Link>
+                    )
                 })
             }
             <Col xs={6} md={4} xl={2} lg={5} >

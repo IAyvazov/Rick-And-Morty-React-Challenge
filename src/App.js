@@ -9,6 +9,7 @@ import Register from './components/Register';
 import AuthContext from './contexts/AuthContext';
 import { useEffect, useState } from "react";
 import Episodes from './components/Episodes/Episodes';
+import Details from './components/Episodes/Details';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                     <Home />
                 </Route>
                 <Route path='/episodes' component={Episodes} />
+                <Route path='/episode/details/:id' component={Details} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
                 <Route path='/logout' render={() => {
