@@ -1,3 +1,5 @@
+import { Alert } from 'react-bootstrap';
+
 import { useHistory } from 'react-router';
 import { useState } from 'react';
 import AuthForm from '../AuthForm';
@@ -24,7 +26,7 @@ const Register = () => {
         }
 
         if (/[^a-zA-Z]/.test(newUser.username)) {
-            return;
+           setUser({ error: 'Alphabet characters only.' })
         } else {
             let users = localStorage.getItem('users');
             if (users == null) {
@@ -37,14 +39,21 @@ const Register = () => {
                 oldUsers.push(newUser);
                 localStorage.setItem('users', JSON.stringify(oldUsers));
             }
-
             history.push('/login');
         }
     };
 
 
     return (
-        <AuthForm formName="Register" OnSubmitHandler={onRegisterSubmitHandler} onChangeName={onChangeName} />
+        <>
+            {
+                user.error ?
+                    <Alert variant='danger'>
+                        {user.error}
+                    </Alert> : null
+            }
+            <AuthForm formName="Register" OnSubmitHandler={onRegisterSubmitHandler} onChangeName={onChangeName} />
+        </>
     );
 };
 
