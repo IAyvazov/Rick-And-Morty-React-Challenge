@@ -23,6 +23,11 @@ const Login = () => {
         e.preventDefault()
 
         let oldUsers = localStorage.getItem('users')
+        if(!oldUsers){
+            setUser({ error: 'Please check your username' });
+            return;
+        }
+    
         let oldArr = JSON.parse(oldUsers)
 
         oldArr.map(arr => {

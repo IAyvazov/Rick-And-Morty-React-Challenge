@@ -8,22 +8,22 @@ const EpisodeDetailsCard = (props) => {
     const [character, setCharacter] = useState();
 
     useEffect(() => {
-        console.log(props.name);
-        charactersService.getOne(props.name)
-            .then(res => setCharacter(res));
-    }, [props.name])
+        charactersService.getOne(props.value.character)
+            .then(res =>  setCharacter(res));
+    }, [props.value])
 
     return (
-        <Col >
-            <Card>
+        
+        <Col key={character?.name}>
+            <Card className=" bg-dark text-white">
                 <Card.Img variant="top" src={character?.image} />
                 <Card.Body>
-                    <Card.Title>{character?.name}</Card.Title>
-                    <Card.Title>{character?.status}</Card.Title>
-                    <Card.Title>{character?.species}</Card.Title>
-                    <Card.Title>{character?.origin}</Card.Title>
-                    <Card.Title>{character?.location}</Card.Title>
-                    <Card.Title>{character?.geder}</Card.Title>
+                    <Card.Title>Name: {character?.name}</Card.Title>
+                    <Card.Text>Status: {character?.status}</Card.Text>
+                    <Card.Text>Species: {character?.species}</Card.Text>
+                    <Card.Text>Origin: {character?.origin.name}</Card.Text>
+                    <Card.Text>Location: {character?.location.name}</Card.Text>
+                    <Card.Text>Gender: {character?.gender}</Card.Text>
                 </Card.Body>
             </Card>
         </Col>

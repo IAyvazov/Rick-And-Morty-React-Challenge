@@ -1,4 +1,4 @@
-import {Row} from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { useEffect, useState } from "react";
 import * as episodesService from '../../services/episodesService';
 import EpisodeDetailsCard from '../EpisodeDetailsCard';
@@ -17,13 +17,12 @@ const Details = (props) => {
         <>
             <h1>Episode: {episode?.name}</h1>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
-            {
-                 episode?.characters.map(character => {
-                     console.log(character);
-                  return  <EpisodeDetailsCard  name={character}>
-                    </EpisodeDetailsCard>
-                })
-            }
+                {
+                    episode?.characters.map(character => {
+                        return <EpisodeDetailsCard value={{character}}>
+                            </EpisodeDetailsCard>
+                    })
+                }
             </Row>
         </>
     );

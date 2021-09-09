@@ -12,6 +12,7 @@ const Episodes = () => {
         count: 1
     });
 
+    //TODO: if there is no logged in user redirect to login page
     const authContext = useContext(AuthContext);
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const Episodes = () => {
                     return (
                         <Link key={episode.name} style={{ textDecoration: 'none' }}  to= {`/episode/details/${episode.id}`} >
                             <Col >
-                                <Card style={{ width: '18rem' }} className=" bg-dark text-white ">
+                                <Card style={{ width: '18rem' }} className=" bg-dark text-white">
                                     <Card.Body>
                                         <Card.Title>Episode: {episode.name}</Card.Title>
                                         <Card.Text>
