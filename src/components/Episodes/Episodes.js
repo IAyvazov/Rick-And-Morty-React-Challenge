@@ -12,8 +12,7 @@ const Episodes = () => {
         count: 1
     });
 
-    //TODO: if there is no logged in user redirect to login page
-    const authContext = useContext(AuthContext);
+    const user = useContext(AuthContext);
 
     useEffect(() => {
         episodesService.getAll(page.count)
@@ -25,7 +24,7 @@ const Episodes = () => {
             {
                 episodes?.results.map(episode => {
                     return (
-                        <Link key={episode.name} style={{ textDecoration: 'none' }}  to= {`/episode/details/${episode.id}`} >
+                        <Link key={episode.name} style={{ textDecoration: 'none' }}  to= { user ? `/episode/details/${episode.id}` : '/login'} >
                             <Col >
                                 <Card style={{ width: '18rem' }} className=" bg-dark text-white">
                                     <Card.Body>

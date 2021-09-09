@@ -9,7 +9,8 @@ import Register from './components/Register';
 import AuthContext from './contexts/AuthContext';
 import { useEffect, useState } from "react";
 import Episodes from './components/Episodes/Episodes';
-import Details from './components/Episodes/Details';
+import EpisodeDetails from './components/Episodes/EpisodeDetails';
+import LocationDetails from './components/LocationDetails/LocationDetails';
 
 
 function App() {
@@ -32,7 +33,9 @@ function App() {
                     <Home />
                 </Route>
                 <Route path='/episodes' component={Episodes} />
-                <Route path='/episode/details/:id' component={Details} />
+                <Route path='/episode/details/:id' component={EpisodeDetails} />
+                <Route path='/character/origin/:name' component={LocationDetails} />
+                <Route path='/character/location/:id' component={LocationDetails} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
                 <Route path='/logout' render={() => {

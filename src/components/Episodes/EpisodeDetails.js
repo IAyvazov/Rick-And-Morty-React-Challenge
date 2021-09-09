@@ -1,10 +1,10 @@
 import { Row } from 'react-bootstrap';
 import { useEffect, useState } from "react";
 import * as episodesService from '../../services/episodesService';
-import EpisodeDetailsCard from '../EpisodeDetailsCard';
+import DetailsCard from '../DetailsCard';
 
 
-const Details = (props) => {
+const EpisodeDetails = (props) => {
 
     const [episode, setEpisode] = useState();
 
@@ -15,12 +15,15 @@ const Details = (props) => {
 
     return (
         <>
+            <div  className = "bg-dark text-white mt-4 text-center ">
             <h1>Episode: {episode?.name}</h1>
+            <h2>Date: {episode?.air_date}</h2>
+        </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
                     episode?.characters.map(character => {
-                        return <EpisodeDetailsCard value={{character}}>
-                            </EpisodeDetailsCard>
+                        return <DetailsCard value={{character}}>
+                            </DetailsCard>
                     })
                 }
             </Row>
@@ -28,4 +31,4 @@ const Details = (props) => {
     );
 }
 
-export default Details;
+export default EpisodeDetails;
