@@ -1,13 +1,14 @@
 import './App.css';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 import HeaderNavbar from './components/HeaderNavbar';
+import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import AuthContext from './contexts/AuthContext';
-import { useEffect, useState } from "react";
 import Episodes from './components/Episodes/Episodes';
 import EpisodeDetails from './components/Episodes/EpisodeDetails';
 import LocationDetails from './components/LocationDetails/LocationDetails';
@@ -43,6 +44,8 @@ function App() {
                     return <Redirect to="/" />
                 }} />
             </Switch>
+
+            <Footer/>
         </AuthContext.Provider>
     );
 }
