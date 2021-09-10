@@ -8,9 +8,10 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import AuthContext from './contexts/AuthContext';
-import Episodes from './components/Episodes/Episodes';
+import Episodes from './components/Episodes';
 import EpisodeDetails from './components/Episodes/EpisodeDetails';
-import LocationDetails from './components/LocationDetails/LocationDetails';
+import LocationDetails from './components/LocationDetails';
+import Characters from './components/Characters';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Route path='/episode/details/:id' component={EpisodeDetails} />
                 <Route path='/character/origin/:name' component={LocationDetails} />
                 <Route path='/character/location/:id' component={LocationDetails} />
+                <Route path='/characters' component={Characters} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
                 <Route path='/logout' render={() => {

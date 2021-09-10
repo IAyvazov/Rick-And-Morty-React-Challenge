@@ -18,7 +18,7 @@ const HeaderNavbar = () => {
     },[user])
 
     return (
-        <Navbar  expand="lg" bg="dark" variant="dark">
+        <Navbar expand="lg" bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand as={Link} to="/">Rick&Morty</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
