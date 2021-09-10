@@ -23,11 +23,11 @@ const Login = () => {
         e.preventDefault()
 
         let oldUsers = localStorage.getItem('users')
-        if(!oldUsers){
+        if (!oldUsers) {
             setUser({ error: 'Please check your username' });
             return;
         }
-    
+
         let oldArr = JSON.parse(oldUsers)
 
         oldArr.map(arr => {
@@ -52,7 +52,7 @@ const Login = () => {
     }
 
     return (
-        <>
+        <div>
             {
                 user.error ?
                     <Alert variant='danger'>
@@ -60,7 +60,7 @@ const Login = () => {
                     </Alert> : null
             }
             <AuthForm formName="Login" onChangeName={onChangeName} OnSubmitHandler={onSubmitLoginHandler} />
-        </>
+        </div>
     );
 };
 

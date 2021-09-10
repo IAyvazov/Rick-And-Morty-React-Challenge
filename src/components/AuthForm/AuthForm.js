@@ -2,7 +2,7 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 
 const AuthForm = (props) => {
     return (
-        <Container className="border mt-5 mb-5 ml-5 mr-5 w-50 bg-dark text-white">
+        <Container className="border mt-5 mb-5 ml-5 mr-5 w-50 bg-dark text-white shadow-lg p-3 mb-5 rounded ">
             <h1 color='white'>{props.formName}</h1>
             <Row className="justify-content-md-center">
                 <Col md="6">

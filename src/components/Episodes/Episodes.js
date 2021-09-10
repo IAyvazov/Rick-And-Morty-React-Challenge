@@ -1,9 +1,8 @@
-import { Card, Row, Col, Pagination } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Row, Col, Pagination } from 'react-bootstrap';
 
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../contexts/AuthContext";
+import { useEffect, useState } from "react";
 import * as episodesService from '../../services/episodesService';
+import EpisodeCard from './EpisodeCard';
 
 const Episodes = () => {
 
@@ -11,8 +10,6 @@ const Episodes = () => {
     const [page, setPage] = useState({
         count: 1
     });
-
-    const user = useContext(AuthContext);
 
     useEffect(() => {
         episodesService.getAll(page.count)
@@ -24,18 +21,7 @@ const Episodes = () => {
             {
                 episodes?.results.map(episode => {
                     return (
-                        <Link key={episode.name} style={{ textDecoration: 'none' }}  to= { user ? `/episode/details/${episode.id}` : '/login'} >
-                            <Col >
-                                <Card style={{ width: '18rem' }} className=" bg-dark text-white">
-                                    <Card.Body>
-                                        <Card.Title>Episode: {episode.name}</Card.Title>
-                                        <Card.Text>
-                                            {episode.air_date}
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        </Link>
+                       <EpisodeCard episode={episode}/>
                     )
                 })
             }

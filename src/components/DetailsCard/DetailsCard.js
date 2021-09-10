@@ -13,7 +13,7 @@ const DetailsCard = (props) => {
     }, [props.value])
 
     return (
-        <Col key={character?.name}>
+        <Col key={character?.name} className= 'mt-3 mb-3 ml-3 mr-3'>
             <Card className=" bg-dark text-white">
                 <Card.Img variant="top" src={character?.image} />
                 <Card.Body>

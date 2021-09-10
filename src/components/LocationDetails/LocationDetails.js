@@ -17,7 +17,7 @@ const LocationDetails = (props) => {
 
     return (
         <>
-        <div  className = "bg-dark text-white mt-4 text-center ">
+        <div  className = "bg-dark text-white mt-5 text-center ">
             <h1>Location: {location?.name}</h1>
             <h2>Type: {location?.type}</h2>
             <h2>Dimension: {location?.dimension}</h2>
