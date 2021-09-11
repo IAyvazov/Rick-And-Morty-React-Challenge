@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 import HeaderNavbar from './components/HeaderNavbar';
 import Footer from './components/Footer';
-import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import AuthContext from './contexts/AuthContext';
@@ -12,6 +11,7 @@ import Episodes from './components/Episodes';
 import EpisodeDetails from './components/Episodes/EpisodeDetails';
 import LocationDetails from './components/LocationDetails';
 import Characters from './components/Characters';
+import isAuth from './hoc/isAuth';
 
 
 function App() {
@@ -30,13 +30,12 @@ function App() {
             <HeaderNavbar />
             
             <Switch>
-                <Route path='/' exact>
-                    <Home />
+                <Route path='/' exact component={Characters}>
                 </Route>
-                <Route path='/episodes' component={Episodes} />
-                <Route path='/episode/details/:id' component={EpisodeDetails} />
-                <Route path='/character/origin/:name' component={LocationDetails} />
-                <Route path='/character/location/:id' component={LocationDetails} />
+                <Route path='/episodes' component={isAuth(Episodes)} />
+                <Route path='/episode/details/:id' component={isAuth(EpisodeDetails)} />
+                <Route path='/character/origin/:name' component={isAuth(LocationDetails)} />
+                <Route path='/character/location/:id' component={isAuth(LocationDetails)} />
                 <Route path='/characters' component={Characters} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />

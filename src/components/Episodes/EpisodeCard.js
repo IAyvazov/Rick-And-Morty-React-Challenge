@@ -1,15 +1,11 @@
-import { useContext } from "react";
-import AuthContext from "../../contexts/AuthContext";
-
 import { Link } from "react-router-dom";
 import {Col ,Card } from 'react-bootstrap';
 
 const EpisodeCard = (props)=>{
 
-    const user = useContext(AuthContext);
 
     return(
-        <Link key={props.episode.name} style={{ textDecoration: 'none' }}  to= { user ? `/episode/details/${props.episode.id}` : '/login'} >
+        <Link key={props.episode.name} style={{ textDecoration: 'none' }}  to= {`/episode/details/${props.episode.id}`} >
         <Col >
             <Card style={{ width: '18rem' }} className=" bg-dark text-white">
                 <Card.Body>

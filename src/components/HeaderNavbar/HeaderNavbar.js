@@ -26,8 +26,8 @@ const HeaderNavbar = () => {
                     user ? (
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link as={Link} to="/characters">Charachters</Nav.Link>
                                 <Nav.Link as={Link} to="/episodes">Episodes</Nav.Link>
+                                <Nav.Link as={Link} to="/locations">Locations</Nav.Link>
                             </Nav>
                             <Nav>
                                 <Navbar.Brand as={Link} to="/">{currUser.username}</Navbar.Brand>
