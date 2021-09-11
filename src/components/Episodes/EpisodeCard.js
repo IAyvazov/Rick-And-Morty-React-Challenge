@@ -3,7 +3,6 @@ import {Col ,Card } from 'react-bootstrap';
 
 const EpisodeCard = (props)=>{
 
-
     return(
         <Link key={props.episode.name} style={{ textDecoration: 'none' }}  to= {`/episode/details/${props.episode.id}`} >
         <Col >
