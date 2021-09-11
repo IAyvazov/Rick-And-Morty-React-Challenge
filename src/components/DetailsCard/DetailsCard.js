@@ -8,12 +8,19 @@ const DetailsCard = (props) => {
     const [character, setCharacter] = useState();
 
     useEffect(() => {
-        charactersService.getOne(props.value.character)
+        if (props.character){
+            setCharacter(props.character)
+        }
+        else{
+            console.log(props.value.characte);
+            charactersService.getOne(props.value.character)
             .then(res => setCharacter(res));
-    }, [props.value])
+        }
+            
+    }, [props.value,props.character])
 
     return (
-        <Col key={character?.name} className= 'mt-3 mb-3 ml-3 mr-3'>
+        <Col key={character?.name} className='mt-3 mb-3 ml-3 mr-3'>
             <Card className=" bg-dark text-white">
                 <Card.Img variant="top" src={character?.image} />
                 <Card.Body>

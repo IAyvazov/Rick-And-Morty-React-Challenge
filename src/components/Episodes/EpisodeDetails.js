@@ -21,10 +21,7 @@ const EpisodeDetails = (props) => {
         </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={4} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    episode?.characters.map(character => {
-                        return <DetailsCard value={{character}}>
-                            </DetailsCard>
-                    })
+                    episode?.characters.map(character => <DetailsCard value={{character}}/>)
                 }
             </Row>
         </>
