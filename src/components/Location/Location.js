@@ -42,8 +42,8 @@ const Location = () => {
                                 pathname: `/character/location/${location.name}`,
                                 state: { locationUrl: location.url }
                             }} >
-                                <Col >
-                                    <Card style={{ width: '18rem' }} className=" bg-dark text-white">
+                                <Col style={{display: 'flex', flexDirection: 'row'}}>
+                                    <Card style={{ width: '18rem',flex: 1 }} className=" bg-dark text-white" >
                                         <Card.Body>
                                             <Card.Title>Location: {location.name}</Card.Title>
                                             <Card.Text>
@@ -62,8 +62,8 @@ const Location = () => {
                         )
                     })
                 }
-                <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
             </Row >
+            <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
         </>
     );
 }

@@ -2,7 +2,7 @@ import CharacterSearch from "../CharacterSearch"
 import { useEffect, useState } from 'react';
 import * as charactersService from '../../services/charactersService';
 import DetailsCard from "../DetailsCard";
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import CustomPagination from "../CustomPagination/CustomPagination";
 
 
@@ -85,20 +85,20 @@ const Characters = () => {
     }
 
     return (
-            <div className='mb-5 mt-5'>
-                <br/>
-                <CharacterSearch onSubmitHandler={onSearchSubmitHandler} onSearch={onSearch} />
-                <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
-                    {
-                        characters?.error ? <h1>{characters.error}</h1> :
-                            characters?.results.map(character => <DetailsCard character={character} />)
-                    }
-                    {
-                        characters?.error ? null : <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
-                    }
+        <div className='mb-5 mt-5'>
+            <br />
+            <CharacterSearch onSubmitHandler={onSearchSubmitHandler} onSearch={onSearch} />
+            <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
+                {
+                    characters?.error ? <h1>{characters.error}</h1> :
+                        characters?.results.map(character => <DetailsCard character={character} />)
+                }
 
-                </Row>
-            </div>
+            </Row>
+            {
+                characters?.error ? null : <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
+            }
+        </div>
     )
 }
 

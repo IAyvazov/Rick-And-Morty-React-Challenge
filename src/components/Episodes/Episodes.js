@@ -43,8 +43,8 @@ const Episodes = () => {
                         )
                     })
                 }
-                <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
             </Row>
+            <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
         </>
     );
 };
