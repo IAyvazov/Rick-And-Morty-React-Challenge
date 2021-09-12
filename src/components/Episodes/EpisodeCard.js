@@ -5,8 +5,8 @@ const EpisodeCard = (props)=>{
 
     return(
         <Link key={props.episode.name} style={{ textDecoration: 'none' }}  to= {`/episode/details/${props.episode.id}`} >
-        <Col >
-            <Card style={{ width: '18rem' }} className=" bg-dark text-white">
+        <Col  style={{display: 'flex', flexDirection: 'row'}}>
+            <Card  className=" bg-dark text-white" style={{flex: 1}}>
                 <Card.Body>
                     <Card.Title>Episode: {props.episode.name}</Card.Title>
                     <Card.Text>

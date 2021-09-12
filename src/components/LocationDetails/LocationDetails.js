@@ -16,7 +16,7 @@ const LocationDetails = (props) => {
     }, [props.location.state.locationUrl])
 
     return (
-        <>
+        <div className='mb-5'>
         <div  className = "bg-dark text-white mt-5 text-center ">
             <h1>Location: {location?.name}</h1>
             <h2>Type: {location?.type}</h2>
@@ -30,7 +30,7 @@ const LocationDetails = (props) => {
                     })
                 }
             </Row>
-        </>
+        </div>
     );
 }
 
