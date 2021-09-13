@@ -1,26 +1,19 @@
 import AuthForm from '../AuthForm';
 import { Alert } from 'react-bootstrap';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useHistory } from 'react-router';
+import AuthContext from '../../contexts/AuthContext';
 
 const Login = () => {
 
     const history = useHistory();
 
-    const [user, setUser] = useState({
-        username: '',
-        loggedIn: false,
-    });
-
-    const onChangeName = (e) => {
-        setUser(oldUser => ({
-            ...oldUser, username: e.target.value
-        }))
-    };
-
+    const [user, setUser] = useContext(AuthContext);
 
     const onSubmitLoginHandler = (e) => {
         e.preventDefault()
+
+        const username =e.target.username.value;
 
         let oldUsers = localStorage.getItem('users')
         if (!oldUsers) {
@@ -32,15 +25,13 @@ const Login = () => {
 
         oldArr.map(arr => {
 
-            if (user.username.length > 0) {
-                if (arr.username === user.username) {
+            if (username.length > 0) {
+                if (arr.username === username) {
                     const currUser = {
-                        username: user.username,
+                        username: username,
                         loggedIn: true,
                     }
-                    setUser(oldUser => ({
-                        ...oldUser, loggedIn: true
-                    }));
+                    setUser(currUser);
                     localStorage.setItem('user', JSON.stringify(currUser))
                     history.push('/');
                 } else {
@@ -52,14 +43,14 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className='mb-5 mt-5'>
             {
-                user.error ?
-                    <Alert variant='danger'>
+                user?.error ?
+                    <Alert variant='danger' className='mt-5'>
                         {user.error}
                     </Alert> : null
             }
-            <AuthForm formName="Login" onChangeName={onChangeName} OnSubmitHandler={onSubmitLoginHandler} />
+            <AuthForm formName="Login" OnSubmitHandler={onSubmitLoginHandler} />
         </div>
     );
 };

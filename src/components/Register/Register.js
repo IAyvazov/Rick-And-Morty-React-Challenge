@@ -45,15 +45,15 @@ const Register = () => {
 
 
     return (
-        <>
+        <div className='mt-5'>
             {
                 user.error ?
-                    <Alert variant='danger'>
+                    <Alert variant='danger' className='mt-5'>
                         {user.error}
                     </Alert> : null
             }
             <AuthForm formName="Register" OnSubmitHandler={onRegisterSubmitHandler} onChangeName={onChangeName} />
-        </>
+        </div>
     );
 };
 

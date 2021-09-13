@@ -2,7 +2,7 @@ import CharacterSearch from "../CharacterSearch"
 import { useEffect, useState } from 'react';
 import * as charactersService from '../../services/charactersService';
 import DetailsCard from "../DetailsCard";
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import CustomPagination from "../CustomPagination/CustomPagination";
 
 

@@ -6,14 +6,19 @@ const isAuth = (WrappedComponent) => {
 
     const Component = (props) => {
 
-        const authContext = useContext(AuthContext);
+        const [user,setUser] = useContext(AuthContext);
         const history = useHistory();
 
-        if (!authContext) {
+        if (!user) {
             history.push('/login');
             return null;
+        }else{
+            if(props.match.path==='/login' || props.match.path==='/register'){
+                history.push('/');
+                return null;
+            }
         }
-
+        
         return <WrappedComponent {...props} />
     }
 

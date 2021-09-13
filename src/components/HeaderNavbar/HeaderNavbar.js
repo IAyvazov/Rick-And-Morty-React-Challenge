@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import AuthContext from "../../contexts/AuthContext";
@@ -6,16 +6,7 @@ import AuthContext from "../../contexts/AuthContext";
 
 const HeaderNavbar = () => {
 
-    const [currUser, setUser] = useState({});
-
-    const user = useContext(AuthContext);
-
-    useEffect(() => {
-        if (!user) {
-            return;
-        }
-        setUser(user);
-    }, [user])
+    const [user, setUser] = useContext(AuthContext);
 
     return (
         <div >
@@ -31,7 +22,7 @@ const HeaderNavbar = () => {
                                     <Nav.Link as={Link} to="/locations">Locations</Nav.Link>
                                 </Nav>
                                 <Nav>
-                                    <Navbar.Brand as={Link} to="/">{currUser.username}</Navbar.Brand>
+                                    <Navbar.Brand as={Link} to="/">{user.username}</Navbar.Brand>
                                     <Nav.Link as={Link} to="/logout" >Logout</Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>

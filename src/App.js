@@ -27,28 +27,32 @@ function App() {
     }, [])
 
     return (
-        <AuthContext.Provider value={user}>
-            <HeaderNavbar />
-            
-            <Switch>
-                <Route path='/' exact component={Characters}>
-                </Route>
-                <Route path='/episodes' component={isAuth(Episodes)} />
-                <Route path='/locations' component={isAuth(Location)} />
-                <Route path='/episode/details/:id' component={isAuth(EpisodeDetails)} />
-                <Route path='/character/origin/:name' component={isAuth(LocationDetails)} />
-                <Route path='/character/location/:id' component={isAuth(LocationDetails)} />
-                <Route path='/characters' component={Characters} />
-                <Route path='/login' component={Login} />
-                <Route path='/register' component={Register} />
-                <Route path='/logout' render={() => {
-                    localStorage.removeItem('user');
-                    return <Redirect to="/" />
-                }} />
-            </Switch>
 
-            <Footer/>
-        </AuthContext.Provider>
+            <AuthContext.Provider value={[user, setUser]}>
+
+                <HeaderNavbar />
+
+                <Switch>
+                    <Route path='/' exact component={Characters}>
+                    </Route>
+                    <Route path='/episodes' component={isAuth(Episodes)} />
+                    <Route path='/locations' component={isAuth(Location)} />
+                    <Route path='/episode/details/:id' component={isAuth(EpisodeDetails)} />
+                    <Route path='/character/origin/:name' component={isAuth(LocationDetails)} />
+                    <Route path='/character/location/:id' component={isAuth(LocationDetails)} />
+                    <Route path='/characters' component={Characters} />
+                    <Route path='/login' component={isAuth(Login)} />
+                    <Route path='/register' component={isAuth(Register)} />
+                    <Route path='/logout' render={() => {
+                        localStorage.removeItem('user');
+                        setUser(null);
+                        return <Redirect to="/" />
+                    }} />
+                </Switch>
+
+                <Footer />
+
+            </AuthContext.Provider>
     );
 }
 

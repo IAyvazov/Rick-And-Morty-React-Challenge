@@ -10,3 +10,4 @@ export const getAll = (url = 'https://rickandmortyapi.com/api/location') => {
         .then(res => res.json())
         .catch(err => console.log(err));
 }
+
