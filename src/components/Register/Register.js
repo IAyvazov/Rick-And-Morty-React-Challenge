@@ -9,8 +9,9 @@ const Register = () => {
     const history = useHistory();
     const [user, setUser] = useState({
         username: '',
-        isLoggedIn: false
     });
+    const [error,setError] = useState();
+
 
     const onChangeName = (e) => {
         setUser({
@@ -26,7 +27,7 @@ const Register = () => {
         }
 
         if (/[^a-zA-Z]/.test(newUser.username)) {
-           setUser({ error: 'Alphabet characters only.' })
+            setError({ error: 'Alphabet characters only.' })
         } else {
             let users = localStorage.getItem('users');
             if (users == null) {
@@ -47,9 +48,9 @@ const Register = () => {
     return (
         <div className='mt-5'>
             {
-                user.error ?
+                error ?
                     <Alert variant='danger' className='mt-5'>
-                        {user.error}
+                        {error.error}
                     </Alert> : null
             }
             <AuthForm formName="Register" OnSubmitHandler={onRegisterSubmitHandler} onChangeName={onChangeName} />
