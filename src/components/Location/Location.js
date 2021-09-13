@@ -31,6 +31,7 @@ const Location = () => {
 
     return (
         <>
+        <br/>
             <div className="bg-dark text-white mt-5 text-center ">
                 <h1>Locations: {locations?.info.count}</h1>
             </div>

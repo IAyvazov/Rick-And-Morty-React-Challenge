@@ -41,8 +41,8 @@ function App() {
                     <Route path='/character/origin/:name' component={isAuth(LocationDetails)} />
                     <Route path='/character/location/:id' component={isAuth(LocationDetails)} />
                     <Route path='/characters' component={Characters} />
-                    <Route path='/login' component={isAuth(Login)} />
-                    <Route path='/register' component={isAuth(Register)} />
+                    <Route path='/login' component={Login} />
+                    <Route path='/register' component={Register} />
                     <Route path='/logout' render={() => {
                         localStorage.removeItem('user');
                         setUser(null);
