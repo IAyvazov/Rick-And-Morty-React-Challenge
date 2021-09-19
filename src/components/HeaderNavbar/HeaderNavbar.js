@@ -3,7 +3,6 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import AuthContext from "../../contexts/AuthContext";
 
-
 const HeaderNavbar = () => {
 
     const [user, setUser] = useContext(AuthContext);
@@ -12,7 +11,16 @@ const HeaderNavbar = () => {
         <div >
             <Navbar expand="lg" bg="dark" variant="dark" fixed='top'>
                 <Container>
-                    <Navbar.Brand as={Link} to="/">Rick&Morty</Navbar.Brand>
+                    <img
+                        src="/favicon.ico"
+                        width="20"
+                        height="20"
+                        className="d-inline-block align-center"
+                        alt="Rick&Morty logo"
+                    />
+                    <Navbar.Brand as={Link} to="/" >
+                        Rick&Morty
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     {
                         user ? (

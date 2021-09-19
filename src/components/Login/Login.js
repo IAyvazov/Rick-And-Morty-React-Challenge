@@ -28,19 +28,15 @@ const Login = () => {
         oldArr.map(arr => {
 
             if (username.length > 0) {
-                console.log('username',username);
-                console.log('arr.username',arr.username);
                 if (arr.username === username) {
                     const currUser = {
                         username: username,
                     }
-                    console.log('if',currUser);
                     setUser(currUser);
                     localStorage.setItem('user', JSON.stringify(currUser))
                     history.push('/');
                 } else {
                     setError({ error: 'Please check your username' })
-                    console.log('error',user);
                 }
             }
             return null;
