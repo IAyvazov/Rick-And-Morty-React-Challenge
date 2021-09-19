@@ -1,46 +1,70 @@
-import { Row } from 'react-bootstrap';
+import { Row , Spinner } from 'react-bootstrap';
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as episodesService from '../../services/episodesService';
 import EpisodeCard from './EpisodeCard';
 import CustomPagination from '../CustomPagination/CustomPagination';
+import { useQuery } from '@apollo/client';
 
 const Episodes = () => {
 
-    const [episodes, setEpisodes] = useState();
-    const [page, setPage] = useState();
+    const [page, setPage] = useState(1);
 
 
-    useEffect(() => {
-        episodesService.getAll(page)
-            .then(res => setEpisodes(res));
-    }, [page])
+    const { loading, error, data } = useQuery(episodesService.GetAll, {
+        variables: { page },
+    });
+
 
     const onCklickNext = () => {
-        if (episodes.info.next == null) {
+        if (data.episodes.info.next == null) {
             return;
         }
-        setPage(episodes.info.next)
+        setPage(data.episodes.info.next)
     }
 
     const onClickPrev = () => {
-        if (episodes.info.prev == null) {
+        if (data.episodes.info.prev == null) {
             return;
         }
-        setPage(episodes.info.prev)
+        setPage(data.episodes.info.prev)
     }
+
+
+    if (loading) {
+        return (
+            <>
+                <br />
+                <div className="bg-dark text-white mt-5 text-center ">
+                    <h1>Loading... <Spinner animation="border" variant="success" /></h1>
+                </div>
+            </>
+        )
+    }
+    if (error) {
+        return (
+            <>
+                <br />
+                <div className="bg-dark text-white mt-5 text-center ">
+                    <h1>Episodes: {data.episodes?.info.count}</h1>
+                </div>
+                <h1>Error : {error}</h1>
+            </>
+        )
+    }
+
 
     return (
         <>
-        <br/>
+            <br />
             <div className="bg-dark text-white mt-5 text-center ">
-                <h1>Episodes: {episodes?.info.count}</h1>
+                <h1>Episodes: {data.episodes?.info.count}</h1>
             </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    episodes?.results.map(episode => {
+                    data.episodes?.results.map(episode => {
                         return (
-                            <EpisodeCard episode={episode} />
+                            <EpisodeCard key={episode.name + episode.air_date} episode={episode} />
                         )
                     })
                 }
