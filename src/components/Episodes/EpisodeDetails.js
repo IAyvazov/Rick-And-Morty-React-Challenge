@@ -1,6 +1,6 @@
 import { Row, Spinner } from 'react-bootstrap';
 import { useEffect, useState } from "react";
-import * as episodesService from '../../services/episodesService';
+import { GetOneEpisode } from '../../graphql/queries/episodesQueries';
 import DetailsCard from '../DetailsCard';
 import { useQuery } from '@apollo/client';
 
@@ -10,7 +10,7 @@ const EpisodeDetails = (props) => {
     const [name, setName] = useState();
 
 
-    const { loading, error, data } = useQuery(episodesService.GetOne, {
+    const { loading, error, data } = useQuery(GetOneEpisode, {
         variables: { name },
     });
 

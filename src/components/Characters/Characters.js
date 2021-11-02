@@ -1,6 +1,6 @@
 import CharacterSearch from "../CharacterSearch"
 import { useState } from 'react';
-import * as charactersService from '../../services/charactersService';
+import { GetAllCharacters }  from '../../graphql/queries/charactersQueries';
 import DetailsCard from "../DetailsCard";
 import { Row, Spinner } from 'react-bootstrap';
 import CustomPagination from "../CustomPagination/CustomPagination";
@@ -18,7 +18,7 @@ const Characters = () => {
         gender: '',
     });
 
-    const { loading, error, data } = useQuery(charactersService.GetAll, {
+    const { loading, error, data } = useQuery(GetAllCharacters, {
         variables: {
             page,
             name: search.name,

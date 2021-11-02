@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { Row, Col, Card, Spinner } from 'react-bootstrap';
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
-import * as locationsService from '../../services/locationsService';
+import { GetAllLocations } from '../../graphql/queries/locationsQueries';
 import CustomPagination from '../CustomPagination/CustomPagination';
 
 const Location = () => {
 
     const [page, setPage] = useState(1);
 
-    const { loading, error, data } = useQuery(locationsService.GetAll, {
+    const { loading, error, data } = useQuery(GetAllLocations, {
         variables: { page },
     });
 

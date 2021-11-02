@@ -3,13 +3,13 @@ import { useQuery } from "@apollo/client";
 
 import { Row, Spinner } from 'react-bootstrap';
 import DetailsCard from '../DetailsCard';
-import * as locationsService from '../../services/locationsService';
+import { GetOneLocation } from '../../graphql/queries/locationsQueries';
 
 const LocationDetails = (props) => {
 
     const [name, setName] = useState();
 
-    const { loading, error, data } = useQuery(locationsService.GetOne, {
+    const { loading, error, data } = useQuery(GetOneLocation, {
         variables: { name },
     });
 

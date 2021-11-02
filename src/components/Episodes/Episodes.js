@@ -1,7 +1,7 @@
 import { Row , Spinner } from 'react-bootstrap';
 
 import { useState } from "react";
-import * as episodesService from '../../services/episodesService';
+import { GetAllEpisodes } from '../../graphql/queries/episodesQueries';
 import EpisodeCard from './EpisodeCard';
 import CustomPagination from '../CustomPagination/CustomPagination';
 import { useQuery } from '@apollo/client';
@@ -11,7 +11,7 @@ const Episodes = () => {
     const [page, setPage] = useState(1);
 
 
-    const { loading, error, data } = useQuery(episodesService.GetAll, {
+    const { loading, error, data } = useQuery(GetAllEpisodes, {
         variables: { page },
     });
 

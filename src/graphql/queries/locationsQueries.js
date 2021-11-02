@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const GetOne = gql`
+export const GetOneLocation = gql`
 query Locations($name: String!) {
     locations(filter:{name: $name}) {
         results{
@@ -26,7 +26,7 @@ query Locations($name: String!) {
 }
 `;
 
-export const GetAll = gql`
+export const GetAllLocations = gql`
 query Locations($page: Int!) {
     locations(page: $page) {
         info{
@@ -43,17 +43,3 @@ query Locations($page: Int!) {
       }
 }
 `;
-
-// export const getOne = (url) => {
-
-//     return fetch(url)
-//         .then(res => res.json())
-//         .catch(err => console.log(err));
-// }
-
-// export const getAll = (url = 'https://rickandmortyapi.com/api/location') => {
-//     return fetch(url)
-//         .then(res => res.json())
-//         .catch(err => console.log(err));
-// }
-
