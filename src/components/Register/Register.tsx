@@ -1,5 +1,5 @@
 import { Alert } from 'react-bootstrap';
-
+import { IUser } from '../../interfaces/interfaces';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
 import AuthForm from '../AuthForm';
@@ -10,29 +10,31 @@ const Register = () => {
     const [user, setUser] = useState({
         username: '',
     });
-    const [error,setError] = useState();
+    const [error, setError] = useState('');
 
 
-    const onChangeName = (e) => {
+    const onChangeName = (e: any) => {
         setUser({
             username: e.target.value
         })
     }
 
 
-    const onRegisterSubmitHandler = (e) => {
+    const onRegisterSubmitHandler = (e: any) => {
         e.preventDefault();
-        const newUser = {
+        const newUser: IUser = {
             username: user.username,
         }
 
         if (/[^a-zA-Z]/.test(newUser.username)) {
-            setError({ error: 'Alphabet characters only.' })
+            setError('Alphabet characters only.')
         } else {
-            let users = localStorage.getItem('users');
-            if (users == null) {
-                users = [];
-                users.push(user);
+
+            let users: any = localStorage.getItem('users');
+
+            if (users === null) {
+                users=[]
+                users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
             }
             else {
@@ -50,10 +52,10 @@ const Register = () => {
             {
                 error ?
                     <Alert variant='danger' className='mt-5'>
-                        {error.error}
+                        {error}
                     </Alert> : null
             }
-            <AuthForm formName="Register" OnSubmitHandler={onRegisterSubmitHandler} onChangeName={onChangeName} />
+            <AuthForm formName="Register" OnSubmitHandler={onRegisterSubmitHandler} OnChangeName={onChangeName} />
         </div>
     );
 };

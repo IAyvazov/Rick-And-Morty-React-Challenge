@@ -5,7 +5,7 @@ import { Row, Spinner } from 'react-bootstrap';
 import DetailsCard from '../DetailsCard';
 import { GetOneLocation } from '../../graphql/queries/locationsQueries';
 
-const LocationDetails = (props) => {
+const LocationDetails = (props:any) => {
 
     const [name, setName] = useState();
 
@@ -49,7 +49,7 @@ const LocationDetails = (props) => {
             </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    data?.locations?.results[0].residents.map(character => {
+                    data?.locations?.results[0].residents.map((character:any) => {
                         return <DetailsCard key={character.name + character.image} value={{ character }}>
                         </DetailsCard>
                     })

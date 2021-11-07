@@ -1,42 +1,39 @@
 import AuthForm from '../AuthForm';
 import { Alert } from 'react-bootstrap';
-import { useContext } from 'react';
 import { useHistory } from 'react-router';
-import AuthContext from '../../contexts/AuthContext';
-import { useState } from 'react';
+import { useState} from 'react';
+import { IUser } from '../../interfaces/interfaces';
 
 const Login = () => {
 
     const history = useHistory();
 
-    const [user, setUser] = useContext(AuthContext);
-    const [error,setError] = useState();
+    const [error, setError] = useState('');
 
-    const onSubmitLoginHandler = (e) => {
+    const onSubmitLoginHandler = (e: any) => {
         e.preventDefault()
 
         const username = e.target.username.value;
 
         let oldUsers = localStorage.getItem('users')
         if (!oldUsers) {
-            setError({ error: 'Please check your username' });
+            setError('Please check your username');
             return null;
         }
 
         let oldArr = JSON.parse(oldUsers)
 
-        oldArr.map(arr => {
+        oldArr.map((arr: { username: string; }) => {
 
             if (username.length > 0) {
                 if (arr.username === username) {
-                    const currUser = {
+                    const currUser:IUser = {
                         username: username,
                     }
-                    setUser(currUser);
                     localStorage.setItem('user', JSON.stringify(currUser))
                     history.push('/');
                 } else {
-                    setError({ error: 'Please check your username' })
+                    setError('Please check your username')
                 }
             }
             return null;
@@ -46,10 +43,9 @@ const Login = () => {
     return (
         <div className='mb-5 mt-5'>
             {
-                console.log('html',user),
                 error ?
                     <Alert variant='danger' className='mt-5'>
-                        {error.error}
+                        {error}
                     </Alert> : null
             }
             <AuthForm formName="Login" OnSubmitHandler={onSubmitLoginHandler} />

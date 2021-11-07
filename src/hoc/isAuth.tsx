@@ -1,12 +1,12 @@
-import { useContext } from "react"
+import { FC, useContext } from "react"
 import { useHistory } from "react-router"
-import AuthContext from "../contexts/AuthContext"
+import { AuthContext } from "../contexts/AuthContext"
 
-const isAuth = (WrappedComponent) => {
+const isAuth = (WrappedComponent: FC) => {
 
-    const Component = (props) => {
+    const Component = (props: any) => {
 
-        const [user, setUser] = useContext(AuthContext);
+        const user = useContext(AuthContext);
         const history = useHistory();
 
         if (!user) {

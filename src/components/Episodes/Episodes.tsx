@@ -62,7 +62,7 @@ const Episodes = () => {
             </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    data.episodes?.results.map(episode => {
+                    data.episodes?.results.map((episode: { name: string; air_date: string; }) => {
                         return (
                             <EpisodeCard key={episode.name + episode.air_date} episode={episode} />
                         )

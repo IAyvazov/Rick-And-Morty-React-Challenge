@@ -2,9 +2,9 @@ import { Col, Card } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const DetailsCard = (props) => {
+const DetailsCard = (props: any) => {
 
-    const [character, setCharacter] = useState();
+    const [character, setCharacter] = useState(props.value.character);
 
     useEffect(() => {
         setCharacter(props.value.character)

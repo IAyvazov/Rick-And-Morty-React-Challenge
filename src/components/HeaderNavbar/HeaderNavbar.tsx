@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import AuthContext from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const HeaderNavbar = () => {
 
-    const [user, setUser] = useContext(AuthContext);
+    const user = useContext(AuthContext);
+    console.log(user);
 
     return (
         <div >

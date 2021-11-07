@@ -1,6 +1,6 @@
 import { Form, Button, Col, Row } from 'react-bootstrap';
 
-const CharacterSearch = ({ onSubmitHandler }) => {
+const CharacterSearch = ({ onSubmitHandler }: any) => {
 
     return (
         < >

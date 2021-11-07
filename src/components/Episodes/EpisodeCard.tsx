@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Col, Card } from 'react-bootstrap';
 
-const EpisodeCard = (props) => {
+const EpisodeCard = (props : any) => {
 
     return (
         <Link key={props.episode.name + props.episode.air_date } style={{ textDecoration: 'none' }} to={`/episode/details/${props.episode.name}`} >

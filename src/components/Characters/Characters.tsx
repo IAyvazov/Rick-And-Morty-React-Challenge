@@ -1,6 +1,6 @@
 import CharacterSearch from "../CharacterSearch"
 import { useState } from 'react';
-import { GetAllCharacters }  from '../../graphql/queries/charactersQueries';
+import { GetAllCharacters } from '../../graphql/queries/charactersQueries';
 import DetailsCard from "../DetailsCard";
 import { Row, Spinner } from 'react-bootstrap';
 import CustomPagination from "../CustomPagination/CustomPagination";
@@ -30,7 +30,7 @@ const Characters = () => {
     })
 
 
-    const onSubmitSearch = (e) => {
+    const onSubmitSearch = (e: any) => {
         e.preventDefault();
         setSearch(oldName => ({
             ...oldName,
@@ -87,7 +87,7 @@ const Characters = () => {
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
 
                 {
-                    data?.characters?.results.map(character => <DetailsCard key={character.id + character.name} value={{ character }} />)
+                    data?.characters?.results.map((character: { id: string; name: string; }) => <DetailsCard key={character.id + character.name} value={{ character }} />)
                 }
 
             </Row>

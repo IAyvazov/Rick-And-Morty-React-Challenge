@@ -58,7 +58,7 @@ const Location = () => {
             </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    data?.locations?.results.map(location => {
+                    data?.locations?.results.map((location: any) => {
                         return (
                             <Link key={location.name + location.id} style={{ textDecoration: 'none' }} to={`/character/location/${location.name}`} >
                                 <Col style={{ display: 'flex', flexDirection: 'row' }}>

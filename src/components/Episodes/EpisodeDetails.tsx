@@ -5,7 +5,7 @@ import DetailsCard from '../DetailsCard';
 import { useQuery } from '@apollo/client';
 
 
-const EpisodeDetails = (props) => {
+const EpisodeDetails = (props: any) => {
 
     const [name, setName] = useState();
 
@@ -49,7 +49,7 @@ const EpisodeDetails = (props) => {
             </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    data.episodes?.results[0].characters.map(character => <DetailsCard key={character.name} value={{ character }} />)
+                    data.episodes?.results[0].characters.map((character: { name: string; }) => <DetailsCard key={character.name} value={{ character }} />)
                 }
             </Row>
         </div>
