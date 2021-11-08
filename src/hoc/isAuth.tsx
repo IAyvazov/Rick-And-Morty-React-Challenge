@@ -1,10 +1,11 @@
 import { FC, useContext } from "react"
 import { useHistory } from "react-router"
 import { AuthContext } from "../contexts/AuthContext"
+import { ILocationProps } from "../interfaces/interfaces"
 
-const isAuth = (WrappedComponent: FC) => {
+const isAuth = (WrappedComponent: FC<ILocationProps>) => {
 
-    const Component = (props: any) => {
+    const Component: FC<ILocationProps> = (props) => {
 
         const user = useContext(AuthContext);
         const history = useHistory();

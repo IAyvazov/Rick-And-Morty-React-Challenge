@@ -1,6 +1,8 @@
+import { FC } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap';
+import { ICharacterSearchProps } from '../../interfaces/interfaces';
 
-const CharacterSearch = ({ onSubmitHandler }: any) => {
+const CharacterSearch: FC<ICharacterSearchProps> = ({ onSubmitHandler }) => {
 
     return (
         < >

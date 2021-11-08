@@ -1,6 +1,8 @@
+import { FC } from 'react';
 import { Col, Pagination } from 'react-bootstrap';
+import { ICustomPaginationProps } from '../../interfaces/interfaces';
 
-const CustomPagination = ({ onCklickNext, onClickPrev }: any) => {
+const CustomPagination: FC<ICustomPaginationProps> = ({ onClickNext, onClickPrev }) => {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -9,7 +11,7 @@ const CustomPagination = ({ onCklickNext, onClickPrev }: any) => {
                     <Pagination.Item onClick={onClickPrev} className='ml-5 mr-5 mb-5 mt-5'>
                         Previous
                     </Pagination.Item>
-                    <Pagination.Item onClick={onCklickNext} className='ml-5 mr-5 mb-5 mt-5'>
+                    <Pagination.Item onClick={onClickNext} className='ml-5 mr-5 mb-5 mt-5'>
                         Next
                     </Pagination.Item>
                 </Pagination>

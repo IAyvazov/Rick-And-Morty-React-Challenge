@@ -1,19 +1,18 @@
 import AuthForm from '../AuthForm';
 import { Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import { useState} from 'react';
+import { useState, ChangeEvent } from 'react';
 import { IUser } from '../../interfaces/interfaces';
 
 const Login = () => {
 
     const history = useHistory();
-
     const [error, setError] = useState('');
 
-    const onSubmitLoginHandler = (e: any) => {
+    const onSubmitLoginHandler = (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const username = e.target.username.value;
+        const username: string = e.target.username.value;
 
         let oldUsers = localStorage.getItem('users')
         if (!oldUsers) {
@@ -23,11 +22,11 @@ const Login = () => {
 
         let oldArr = JSON.parse(oldUsers)
 
-        oldArr.map((arr: { username: string; }) => {
+        oldArr.map((arr: IUser) => {
 
             if (username.length > 0) {
                 if (arr.username === username) {
-                    const currUser:IUser = {
+                    const currUser: IUser = {
                         username: username,
                     }
                     localStorage.setItem('user', JSON.stringify(currUser))

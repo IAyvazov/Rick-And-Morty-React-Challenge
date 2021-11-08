@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext"
 
 const isLogged = (WrappedComponent: FC) => {
 
-    const Component = (props: any) => {
+    const Component: FC = (props) => {
 
         const user = useContext(AuthContext);
         const history = useHistory();

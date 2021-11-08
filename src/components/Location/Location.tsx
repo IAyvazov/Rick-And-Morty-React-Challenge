@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GetAllLocations } from '../../graphql/queries/locationsQueries';
 import CustomPagination from '../CustomPagination/CustomPagination';
+import { ILocationProps } from "../../interfaces/interfaces";
 
 const Location = () => {
 
@@ -14,7 +15,7 @@ const Location = () => {
     });
 
 
-    const onCklickNext = () => {
+    const onClickNext = () => {
         if (data?.locations.info.next == null) {
             return;
         }
@@ -58,7 +59,7 @@ const Location = () => {
             </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    data?.locations?.results.map((location: any) => {
+                    data?.locations?.results.map((location: ILocationProps['location']) => {
                         return (
                             <Link key={location.name + location.id} style={{ textDecoration: 'none' }} to={`/character/location/${location.name}`} >
                                 <Col style={{ display: 'flex', flexDirection: 'row' }}>
@@ -85,7 +86,7 @@ const Location = () => {
                     })
                 }
             </Row >
-            <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
+            <CustomPagination onClickNext={onClickNext} onClickPrev={onClickPrev} />
         </>
     );
 }

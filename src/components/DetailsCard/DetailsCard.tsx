@@ -1,39 +1,40 @@
 import { Col, Card } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FC } from 'react';
 import { Link } from 'react-router-dom';
+import { ICharacterProps } from '../../interfaces/interfaces';
 
-const DetailsCard = (props: any) => {
+const DetailsCard: FC<ICharacterProps> = ({character}) => {
 
-    const [character, setCharacter] = useState(props.value.character);
+    const [currentCharacter, setCharacter] = useState(character);
 
     useEffect(() => {
-        setCharacter(props.value.character)
-    }, [props.value.character])
+        setCharacter(character)
+    }, [character])
 
     return (
         <Col key={character?.name} className='mt-3 mb-3 ml-3 mr-3' style={{ display: 'flex', flexDirection: 'row' }}>
             <Card className=" bg-dark text-white" style={{ flex: 1 }}>
-                <Card.Img variant="top" src={character?.image} />
+                <Card.Img variant="top" src={currentCharacter?.image} />
                 <Card.Body>
-                    <Card.Title>Name: {character?.name}</Card.Title>
+                    <Card.Title>Name: {currentCharacter?.name}</Card.Title>
                     <Card.Text>
-                        {character?.status === 'unknown' ? '' : "Status: " + character?.status}
+                        {currentCharacter?.status === 'unknown' ? '' : "Status: " + currentCharacter?.status}
                     </Card.Text>
                     <Card.Text>
-                        {character?.species === 'unknown' ? '' : 'Species: ' + character?.species}
+                        {currentCharacter?.species === 'unknown' ? '' : 'Species: ' + currentCharacter?.species}
                     </Card.Text>
                     <Card.Text>
-                        <Link style={{ textDecoration: 'none' }} to={`/character/origin/${character?.origin.name}`} >
-                            {character?.origin.name === 'unknown' ? '' : "Origin: " + character?.origin.name}
+                        <Link style={{ textDecoration: 'none' }} to={`/character/origin/${currentCharacter?.origin.name}`} >
+                            {currentCharacter?.origin.name === 'unknown' ? '' : "Origin: " + currentCharacter?.origin.name}
                         </Link>
                     </Card.Text>
                     <Card.Text>
-                        <Link style={{ textDecoration: 'none' }} to={`/character/location/${character?.location.name}`}>
-                            {character?.location.name === 'unknown' ? '' : 'Location: ' + character?.location.name}
+                        <Link style={{ textDecoration: 'none' }} to={`/character/location/${currentCharacter?.location.name}`}>
+                            {currentCharacter?.location.name === 'unknown' ? '' : 'Location: ' + currentCharacter?.location.name}
                         </Link>
                     </Card.Text>
                     <Card.Text>
-                        {character?.gender === 'unknown' ? '' : 'Gender: ' + character?.gender}
+                        {currentCharacter?.gender === 'unknown' ? '' : 'Gender: ' + currentCharacter?.gender}
                     </Card.Text>
                 </Card.Body>
             </Card>

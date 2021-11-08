@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 
 import { Row, Spinner } from 'react-bootstrap';
 import DetailsCard from '../DetailsCard';
 import { GetOneLocation } from '../../graphql/queries/locationsQueries';
+import { ICharacterProps, ILocationProps } from "../../interfaces/interfaces";
 
-const LocationDetails = (props:any) => {
+const LocationDetails: FC<ILocationProps> = ({location}) => {
 
-    const [name, setName] = useState();
+    const [name, setName] = useState<string>();
 
     const { loading, error, data } = useQuery(GetOneLocation, {
         variables: { name },
     });
 
     useEffect(() => {
-        setName(props.match.params.name)
-    }, [props.match.params.name])
+        setName(location.name)
+    }, [location.name])
 
 
     if (loading) {
@@ -49,8 +50,8 @@ const LocationDetails = (props:any) => {
             </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    data?.locations?.results[0].residents.map((character:any) => {
-                        return <DetailsCard key={character.name + character.image} value={{ character }}>
+                    data?.locations?.results[0].residents.map((currentCharacter: ICharacterProps['character']) => {
+                        return <DetailsCard key={currentCharacter.name + currentCharacter.image} character={currentCharacter}>
                         </DetailsCard>
                     })
                 }

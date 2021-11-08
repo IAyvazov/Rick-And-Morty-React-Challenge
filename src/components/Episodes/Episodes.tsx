@@ -1,10 +1,10 @@
-import { Row , Spinner } from 'react-bootstrap';
-
 import { useState } from "react";
+import { Row, Spinner } from 'react-bootstrap';
+import { useQuery } from '@apollo/client';
 import { GetAllEpisodes } from '../../graphql/queries/episodesQueries';
 import EpisodeCard from './EpisodeCard';
 import CustomPagination from '../CustomPagination/CustomPagination';
-import { useQuery } from '@apollo/client';
+import { IEpisodeProps } from "../../interfaces/interfaces";
 
 const Episodes = () => {
 
@@ -16,7 +16,7 @@ const Episodes = () => {
     });
 
 
-    const onCklickNext = () => {
+    const onClickNext = () => {
         if (data.episodes.info.next == null) {
             return;
         }
@@ -62,14 +62,14 @@ const Episodes = () => {
             </div>
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
                 {
-                    data.episodes?.results.map((episode: { name: string; air_date: string; }) => {
+                    data.episodes?.results.map((episode: IEpisodeProps['episode']) => {
                         return (
                             <EpisodeCard key={episode.name + episode.air_date} episode={episode} />
                         )
                     })
                 }
             </Row>
-            <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
+            <CustomPagination onClickNext={onClickNext} onClickPrev={onClickPrev} />
         </>
     );
 };

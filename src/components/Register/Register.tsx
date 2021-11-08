@@ -1,26 +1,27 @@
 import { Alert } from 'react-bootstrap';
 import { IUser } from '../../interfaces/interfaces';
 import { useHistory } from 'react-router';
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import AuthForm from '../AuthForm';
 
 const Register = () => {
 
+
     const history = useHistory();
-    const [user, setUser] = useState({
+    const [user, setUser] = useState<IUser>({
         username: '',
     });
     const [error, setError] = useState('');
 
 
-    const onChangeName = (e: any) => {
+    const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
         setUser({
             username: e.target.value
         })
     }
 
 
-    const onRegisterSubmitHandler = (e: any) => {
+    const onRegisterSubmitHandler = (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         const newUser: IUser = {
             username: user.username,
@@ -33,7 +34,7 @@ const Register = () => {
             let users: any = localStorage.getItem('users');
 
             if (users === null) {
-                users=[]
+                users = []
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
             }

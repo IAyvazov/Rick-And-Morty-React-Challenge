@@ -5,6 +5,7 @@ import DetailsCard from "../DetailsCard";
 import { Row, Spinner } from 'react-bootstrap';
 import CustomPagination from "../CustomPagination/CustomPagination";
 import { useQuery } from "@apollo/client";
+import { ICharacterProps } from "../../interfaces/interfaces";
 
 
 const Characters = () => {
@@ -43,7 +44,7 @@ const Characters = () => {
     }
 
 
-    const onCklickNext = () => {
+    const onClickNext = () => {
         if (data?.characters?.info.next == null) {
             return;
         }
@@ -87,11 +88,11 @@ const Characters = () => {
             <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-5 mt-4 mb-4 mr-5 ml-5 justify-content-md-center">
 
                 {
-                    data?.characters?.results.map((character: { id: string; name: string; }) => <DetailsCard key={character.id + character.name} value={{ character }} />)
+                    data?.characters?.results.map((currentCharacter: ICharacterProps['character']) => <DetailsCard key={currentCharacter.id + currentCharacter.name} character={currentCharacter} />)
                 }
 
             </Row>
-            <CustomPagination onCklickNext={onCklickNext} onClickPrev={onClickPrev} />
+            <CustomPagination onClickNext={onClickNext} onClickPrev={onClickPrev} />
         </div>
     )
 }

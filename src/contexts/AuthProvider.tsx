@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { IUser} from '../interfaces/interfaces';
+import { IUser } from '../interfaces/interfaces';
 
 
 const AuthProvider = () => {
 
-    const [user, setUser] = useState<IUser | null>();
+    const [user, setUser] = useState<IUser>({ username: '' });
 
     useEffect(() => {
         const currUser = localStorage.getItem('user');
@@ -15,7 +15,7 @@ const AuthProvider = () => {
     }, [])
 
     return (
-        <AuthContext.Provider value={[user,setUser]} />
+        <AuthContext.Provider value={user} />
     )
 }
 

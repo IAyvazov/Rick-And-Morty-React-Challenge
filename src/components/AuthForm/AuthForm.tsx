@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import { AuthFormProps } from '../../interfaces/interfaces';
+import { IAuthFormProps } from '../../interfaces/interfaces';
 
 
-const AuthForm: FC<AuthFormProps> = ({ formName, OnSubmitHandler, OnChangeName }) => {
+const AuthForm: FC<IAuthFormProps> = ({ formName, OnSubmitHandler, OnChangeName }) => {
     return (
         <div className='mt-5'>
             <br />
